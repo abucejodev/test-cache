@@ -1,5 +1,9 @@
 const getCount = async () => {
-  const response = await fetch("http://localhost:3000/api/count", {
+  const URL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : process.env.URL;
+  const response = await fetch(`${URL}/api/count`, {
     next: { tags: ["count"] },
   });
   const data: number = await response.json();
